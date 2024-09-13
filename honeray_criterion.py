@@ -3,7 +3,7 @@ honeray_criterion.py written by Benjamin Lee (lee02819@umn.edu)
 This program implements the gesture theory understanding of
 modulation in traditional Chinese music to evaluate whether
 a user-inputted modulation satisfies Honeray's criterion
-Latest edit was made on 2024-09-09
+Latest edit was made on 2024-09-12
 '''
 
 # Define human-readable versions of scale degrees and letter notes as global variables
@@ -102,10 +102,10 @@ def obeys_honerays_crit(start_key, end_key, start_letter, end_letter):
 
     # Define sections of Honeray's criterion
     isOrigin = w(kx2_inv(kx1(0))) or w(kx1_inv(kx2(0)))
-    isInterval = i(kx1(s), kx2(m(s)))
+    isInterval = i(kx1(s), p(kx1(s)))
     isNatural = n(s) and n(m(s))
     isCommon = w(s) and w(m(s)) and (s==m(s) or kx1(s)==p(kx1(s)))
-    isTransition = (w(kx1_inv(p(kx1(s)))) and w(s)) or (w(kx2_inv(kx1(s))) and w(m(s)))
+    isTransition = (w(p(s)) and w(s)) or (w(kx2_inv(kx1(s))) and w(m(s)))
 
     # Apply Honeray's criterion and return final boolean conclusion
     result = isOrigin and isInterval and isNatural and (isCommon or isTransition)
